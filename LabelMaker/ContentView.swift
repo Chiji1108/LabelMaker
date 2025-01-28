@@ -15,7 +15,7 @@ struct ContentView: View {
 
     var body: some View {
         LabelView(label: $label)
-            .padding()
+            .padding(55)
             .ornament(attachmentAnchor: .scene(.bottom)) {
                 HStack(spacing: 30) {
                     Slider(value: $label.cornerRadius, in: 0...100)
@@ -29,10 +29,12 @@ struct ContentView: View {
                     }
                     Button("Create") {
                         openWindow(value: label)
-                        label = Label()
+                        label = Label(
+                            cornerRadius: label.cornerRadius, colorIndex: label.colorIndex)
                     }
                 }
-                .padding()
+                .padding([.top, .bottom], 15)
+                .padding([.leading, .trailing], 38)
                 .glassBackgroundEffect()
             }
     }
