@@ -5,19 +5,24 @@
 //  Created by 千々岩真吾 on 2025/01/28.
 //
 
-import SwiftUI
 import RealityKit
 import RealityKitContent
+import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Model3D(named: "Scene", bundle: realityKitContentBundle)
-                .padding(.bottom, 50)
+    @State private var label = Label()
 
-            Text("Hello, world!")
-        }
-        .padding()
+    var body: some View {
+        LabelView(label: $label)
+            .padding()
+            .ornament(attachmentAnchor: .scene(.bottom)) {
+                HStack(spacing: 30) {
+                    Slider(value: $label.cornerRadius, in: 0...100)
+                        .frame(width: 100)
+                }
+                .padding()
+                .glassBackgroundEffect()
+            }
     }
 }
 
